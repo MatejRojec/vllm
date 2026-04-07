@@ -221,6 +221,8 @@ class Base(
         # TODO(hmellor): Remove this when Transformers v4 support is dropped
         for sub_config_name in getattr(self.config, "sub_configs", {}):
             sub_config = getattr(self.config, sub_config_name)
+            if sub_config is None:
+                continue
             if sub_config.dtype != (dtype := self.config.dtype):
                 sub_config.dtype = dtype
 
